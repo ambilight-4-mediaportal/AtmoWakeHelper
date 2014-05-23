@@ -1,0 +1,8 @@
+23-04-2014
+
+- Made it Forms application with much cleaner code, on first start it will ask you to set the correct COM port.
+- Saves settings in profile folder.
+- No longer needs .bat files.
+- Shorter sleep timers.
+- Added logo, greyscale to avoid confusion with Atmowin icon.
+- Check if already running.

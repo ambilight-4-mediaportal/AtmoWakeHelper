@@ -135,13 +135,13 @@ namespace AtmoWakeHelper
             if (e.Mode.ToString().ToLower() == "resume")
             {
                 string appUSBDeview = @"includes\USBDeview.exe";
-                string appPSkill = @"includes\pskill.exe";
 
-                if (File.Exists(appUSBDeview) && File.Exists(appPSkill))
+                if (File.Exists(appUSBDeview))
                 {
                     //Close Atmowin
                     //MessageBox.Show("Closing atmowin!");
-                    startProcess(appPSkill, "AtmoWinA");
+                    Process[] proc = Process.GetProcessesByName("AtmoWinA");
+	                proc[0].Kill();
 
                     //Disconnect COM port
                     //MessageBox.Show("DISconnect " + Properties.Settings.Default.comPort);
