@@ -9,4 +9,4 @@ http://forum.team-mediaportal.com/threads/solution-for-auto-com-reconnect-on-sle
 
 Disclaimer
 
-USBDeview by NirSoft
+USBDeview by NirSoft: http://www.nirsoft.net/utils/usb_devices_view.html
