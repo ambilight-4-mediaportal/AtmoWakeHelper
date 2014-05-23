@@ -32,7 +32,7 @@ namespace AtmoWakeHelper
                 catch { };
             }
 
-            //No need to lookup COM port count as it's only add failure points
+            //No need to lookup COM port count as it only adds failure points
             int comPortCounter = 1;
 
             while (comPortCounter <31)
