@@ -1,4 +1,4 @@
-23-04-2014
+23-05-2014
 
 - Made it Forms application with much cleaner code, on first start it will ask you to set the correct COM port.
 - Saves settings in profile folder.
