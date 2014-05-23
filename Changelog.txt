@@ -6,3 +6,4 @@
 - Shorter sleep timers.
 - Added logo, greyscale to avoid confusion with Atmowin icon.
 - Check if already running.
+- Removed pskill.exe dependency
