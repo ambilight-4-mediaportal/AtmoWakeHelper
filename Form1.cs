@@ -32,7 +32,7 @@ namespace AtmoWakeHelper
                 catch { };
             }
 
-            //No need to lookup COM port count as it only adds failure points
+            //No need to lookup COM port count as it's only add failure points
             int comPortCounter = 1;
 
             while (comPortCounter <31)
@@ -151,9 +151,14 @@ namespace AtmoWakeHelper
                     //MessageBox.Show("CONnect " + Properties.Settings.Default.comPort);
                     startProcess(appUSBDeview, "/enable_by_drive " + Properties.Settings.Default.comPort);
 
-                    //Start Atmowin
-                    //MessageBox.Show("Starting atmowin!");
-                    startProcess("AtmoWinA.exe", "");
+                    
+                    //Check if we have enabled Atmowin startup to to run after resume
+                    if (Properties.Settings.Default.enabledAtmowinStart == true)
+                    {
+                        //Start Atmowin
+                        //MessageBox.Show("Starting atmowin!");
+                        startProcess("AtmoWinA.exe", "");
+                    }
                 }
                 else
                 {

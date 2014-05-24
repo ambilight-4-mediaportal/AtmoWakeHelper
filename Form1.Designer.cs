@@ -34,13 +34,14 @@
             this.cbComPorts = new System.Windows.Forms.ComboBox();
             this.atmoWakeNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnExitProgram = new System.Windows.Forms.Button();
+            this.cbstartAtmowin = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnCloseToTray
             // 
-            this.btnCloseToTray.Location = new System.Drawing.Point(125, 19);
+            this.btnCloseToTray.Location = new System.Drawing.Point(160, 12);
             this.btnCloseToTray.Name = "btnCloseToTray";
-            this.btnCloseToTray.Size = new System.Drawing.Size(101, 38);
+            this.btnCloseToTray.Size = new System.Drawing.Size(167, 38);
             this.btnCloseToTray.TabIndex = 1;
             this.btnCloseToTray.Text = "Close to tray";
             this.btnCloseToTray.UseVisualStyleBackColor = true;
@@ -50,9 +51,9 @@
             // 
             this.cbComPorts.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AtmoWakeHelper.Properties.Settings.Default, "comPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbComPorts.FormattingEnabled = true;
-            this.cbComPorts.Location = new System.Drawing.Point(13, 29);
+            this.cbComPorts.Location = new System.Drawing.Point(13, 12);
             this.cbComPorts.Name = "cbComPorts";
-            this.cbComPorts.Size = new System.Drawing.Size(106, 21);
+            this.cbComPorts.Size = new System.Drawing.Size(120, 21);
             this.cbComPorts.TabIndex = 0;
             this.cbComPorts.Text = global::AtmoWakeHelper.Properties.Settings.Default.comPort;
             this.cbComPorts.TextChanged += new System.EventHandler(this.cbComPorts_TextChanged);
@@ -76,11 +77,24 @@
             this.btnExitProgram.UseVisualStyleBackColor = true;
             this.btnExitProgram.Click += new System.EventHandler(this.btnExitProgram_Click);
             // 
+            // cbstartAtmowin
+            // 
+            this.cbstartAtmowin.AutoSize = true;
+            this.cbstartAtmowin.Checked = global::AtmoWakeHelper.Properties.Settings.Default.enabledAtmowinStart;
+            this.cbstartAtmowin.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::AtmoWakeHelper.Properties.Settings.Default, "enabledAtmowinStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbstartAtmowin.Location = new System.Drawing.Point(13, 59);
+            this.cbstartAtmowin.Name = "cbstartAtmowin";
+            this.cbstartAtmowin.Size = new System.Drawing.Size(152, 17);
+            this.cbstartAtmowin.TabIndex = 3;
+            this.cbstartAtmowin.Text = "Start Atmowin after resume";
+            this.cbstartAtmowin.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 91);
+            this.Controls.Add(this.cbstartAtmowin);
             this.Controls.Add(this.btnExitProgram);
             this.Controls.Add(this.btnCloseToTray);
             this.Controls.Add(this.cbComPorts);
@@ -92,6 +106,7 @@
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -101,6 +116,7 @@
         private System.Windows.Forms.Button btnCloseToTray;
         private System.Windows.Forms.NotifyIcon atmoWakeNotifyIcon;
         private System.Windows.Forms.Button btnExitProgram;
+        private System.Windows.Forms.CheckBox cbstartAtmowin;
 
     }
 }

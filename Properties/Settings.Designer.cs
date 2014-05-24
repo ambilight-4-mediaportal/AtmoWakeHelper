@@ -34,5 +34,17 @@ namespace AtmoWakeHelper.Properties {
                 this["comPort"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool enabledAtmowinStart {
+            get {
+                return ((bool)(this["enabledAtmowinStart"]));
+            }
+            set {
+                this["enabledAtmowinStart"] = value;
+            }
+        }
     }
 }
