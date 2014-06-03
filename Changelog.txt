@@ -2,6 +2,7 @@
 
 - Process start error handling.
 - Added external resources to source with permission granted from NirSoft.
+- Added debug mode and additional error handling
 
 24-05-2014
 
