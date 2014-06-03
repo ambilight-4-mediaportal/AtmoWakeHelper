@@ -152,7 +152,7 @@ namespace AtmoWakeHelper
                     startProcess(appUSBDeview, "/enable_by_drive " + Properties.Settings.Default.comPort);
 
                     
-                    //Check if we have enabled Atmowin startup to to run after resume
+                    //Check if we have enabled Atmowin startup to run after resume
                     if (Properties.Settings.Default.enabledAtmowinStart == true)
                     {
                         //Start Atmowin
@@ -168,12 +168,18 @@ namespace AtmoWakeHelper
         }
         private static void startProcess(string program, string arguments)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = program;
-            startInfo.Arguments = arguments;
-            Process proc = Process.Start(startInfo);
-            proc.WaitForExit(10000);
-
+            try
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = program;
+                startInfo.Arguments = arguments;
+                Process proc = Process.Start(startInfo);
+                proc.WaitForExit(10000);
+            }
+            catch (Exception eStartProcess)
+            {
+                MessageBox.Show("Error while starting process ( "+ program + " ) :" + eStartProcess.ToString());
+            }
             //sleep timer to avoid windows being to quick upon COM port unlocking
             Thread.Sleep(2500);
         }

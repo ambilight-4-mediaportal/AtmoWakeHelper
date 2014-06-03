@@ -1,3 +1,8 @@
+03-06-2014
+
+- Process start error handling.
+- Added external resources to source with permission granted from NirSoft.
+
 24-05-2014
 
 - Added option to disable Atmowin startup after resume (default is on) 
