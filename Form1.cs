@@ -141,7 +141,6 @@ namespace AtmoWakeHelper
                 if (File.Exists(appUSBDeview))
                 {
                     //Close Atmowin
-                    //MessageBox.Show("Closing atmowin!");
                     try
                     {
                         Process[] proc = Process.GetProcessesByName("AtmoWinA");
@@ -149,37 +148,22 @@ namespace AtmoWakeHelper
                     }
                     catch (Exception eProcAtmoKill)
                     {
-                        if (debugMode == true)
-                        {
-                            MessageBox.Show("Error while closing Atmowin:" + eProcAtmoKill.ToString());
-                        }
+                        logger("Error while closing Atmowin:" + eProcAtmoKill.ToString());
                     }
 
                     //Disconnect COM port
-
-                    if (debugMode == true)
-                    {
-                        MessageBox.Show("DISconnect " + Properties.Settings.Default.comPort);
-                    }
-
+                    logger("DISconnect " + Properties.Settings.Default.comPort);
                     startProcess(appUSBDeview, "/disable_by_drive " + Properties.Settings.Default.comPort);
 
                     //Connect COM port
-                    if (debugMode == true)
-                    {
-                        MessageBox.Show("CONnect " + Properties.Settings.Default.comPort);
-                    }
-
+                    logger("CONnect " + Properties.Settings.Default.comPort);
                     startProcess(appUSBDeview, "/enable_by_drive " + Properties.Settings.Default.comPort);
 
                     //Check if we have enabled Atmowin startup to run after resume
                     if (Properties.Settings.Default.enabledAtmowinStart == true)
                     {
                         //Start Atmowin
-                        if (debugMode == true)
-                        {
-                            MessageBox.Show("Starting atmowin!");
-                        }
+                        logger("Starting atmowin..");
                         startProcess("AtmoWinA.exe", "");
                     }
                 }
@@ -201,13 +185,18 @@ namespace AtmoWakeHelper
             }
             catch (Exception eStartProcess)
             {
-                if (debugMode == true)
-                {
-                    MessageBox.Show("Error while starting process ( " + program + " ) : " + eStartProcess.ToString());
-                }
+               
+                logger("Error while starting process ( " + program + " ) : " + eStartProcess.ToString());
             }
             //sleep timer to avoid windows being to quick upon COM port unlocking
             Thread.Sleep(2500);
+        }
+        private static void logger(string logMessage)
+        {
+            if (debugMode == true)
+            {
+                MessageBox.Show(logMessage);
+            }
         }
 
         private void btnExitProgram_Click(object sender, EventArgs e)
