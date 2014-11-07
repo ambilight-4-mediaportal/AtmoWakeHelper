@@ -138,6 +138,9 @@ namespace AtmoWakeHelper
             {
                 string appUSBDeview = @"includes\USBDeview.exe";
 
+                //Sleep 2.5s to allow for disk startup
+                Thread.Sleep(2500);
+
                 if (File.Exists(appUSBDeview))
                 {
                     //Close Atmowin
@@ -152,11 +155,11 @@ namespace AtmoWakeHelper
                     }
 
                     //Disconnect COM port
-                    logger("DISconnect " + Properties.Settings.Default.comPort);
+                    logger("Disconnect " + Properties.Settings.Default.comPort);
                     startProcess(appUSBDeview, "/disable_by_drive " + Properties.Settings.Default.comPort);
 
                     //Connect COM port
-                    logger("CONnect " + Properties.Settings.Default.comPort);
+                    logger("Connect " + Properties.Settings.Default.comPort);
                     startProcess(appUSBDeview, "/enable_by_drive " + Properties.Settings.Default.comPort);
 
                     //Check if we have enabled Atmowin startup to run after resume
@@ -184,10 +187,10 @@ namespace AtmoWakeHelper
                 proc.WaitForExit(10000);
             }
             catch (Exception eStartProcess)
-            {
-               
+            {               
                 logger("Error while starting process ( " + program + " ) : " + eStartProcess.ToString());
             }
+
             //sleep timer to avoid windows being to quick upon COM port unlocking
             Thread.Sleep(2500);
         }
