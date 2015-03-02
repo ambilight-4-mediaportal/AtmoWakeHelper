@@ -1,12 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -40,7 +36,7 @@ namespace AtmoWakeHelper
       // No need to lookup COM port count as it only adds failure points
       int comPortCounter = 1;
 
-      while (comPortCounter < 31)
+      while (comPortCounter <= 30)
       {
         cbComPorts.Items.Add("COM" + comPortCounter);
         comPortCounter++;
@@ -54,6 +50,12 @@ namespace AtmoWakeHelper
       else
       {
         cbComPorts.SelectedIndex = 0;
+      }
+
+      // Delete old debug log if it exists
+      if (File.Exists("debug.log"))
+      {
+        File.Delete("debug.log");
       }
     }
 
@@ -146,9 +148,14 @@ namespace AtmoWakeHelper
           string appUSBDeview = @"includes\USBDeview.exe";
           string atmoWinFolder = Properties.Settings.Default.AtmoWinFolder;
 
+          Logger("Current application folder: " + Directory.GetCurrentDirectory());
+          Logger("AtmoWin folder: " + atmoWinFolder);
+
           if (!string.IsNullOrEmpty(atmoWinFolder))
           {
+            Logger("Custom atmoWin folder is specified: " + atmoWinFolder);
             appUSBDeview = Path.Combine(atmoWinFolder, @"includes\USBDeview.exe");
+            Logger("AppUSBDevice location: " + appUSBDeview);
           }
 
           // Sleep 2.5s to allow for disk startup
@@ -164,22 +171,22 @@ namespace AtmoWakeHelper
             }
             catch (Exception eProcAtmoKill)
             {
-              logger("Error while closing Atmowin:" + eProcAtmoKill.ToString());
+              Logger("Error while closing Atmowin:" + eProcAtmoKill.ToString());
             }
 
             // Disconnect COM port
-            logger("Disconnect " + Properties.Settings.Default.comPort);
+            Logger("Disconnect " + Properties.Settings.Default.comPort);
             startProcess(appUSBDeview, "/disable_by_drive " + Properties.Settings.Default.comPort);
 
             // Connect COM port
-            logger("Connect " + Properties.Settings.Default.comPort);
+            Logger("Connect " + Properties.Settings.Default.comPort);
             startProcess(appUSBDeview, "/enable_by_drive " + Properties.Settings.Default.comPort);
 
             // Check if we have enabled Atmowin startup to run after resume
             if (Properties.Settings.Default.enabledAtmowinStart == true)
             {
               // Start Atmowin
-              logger("Starting atmowin..");
+              Logger("Starting atmowin..");
               startProcess("AtmoWinA.exe", "");
             }
           }
@@ -204,18 +211,21 @@ namespace AtmoWakeHelper
       }
       catch (Exception eStartProcess)
       {
-        logger(string.Format("Error while starting process ( {0} ) : {1}", program, eStartProcess));
+        Logger(string.Format("Error while starting process ( {0} ) : {1}", program, eStartProcess));
       }
 
       // Sleep timer to avoid windows being to quick upon COM port unlocking
       Thread.Sleep(2500);
     }
 
-    private static void logger(string logMessage)
+    private static void Logger(string logMessage)
     {
-      if (debugMode == true)
+      if (debugMode)
       {
-        MessageBox.Show(logMessage);
+        StreamWriter sw = new StreamWriter("debug.log", true);
+        sw.WriteLine(string.Format("[ {0} ] {1}", DateTime.Now, logMessage));
+        sw.Close();
+        //MessageBox.Show(logMessage);
       }
     }
 
