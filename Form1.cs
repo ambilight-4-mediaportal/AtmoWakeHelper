@@ -157,8 +157,8 @@ namespace AtmoWakeHelper
           {
             Logger("Custom atmoWin folder is specified: " + atmoWinFolder);
 
-            Logger("AtmoWin location: " + appUSBDeview);
             AtmoWin = Path.Combine(atmoWinFolder, AtmoWin);
+            Logger("AtmoWin location: " + AtmoWin);
 
             appUSBDeview = Path.Combine(atmoWinFolder, @"includes\USBDeview.exe");
             Logger("AppUSBDeview location: " + appUSBDeview);
