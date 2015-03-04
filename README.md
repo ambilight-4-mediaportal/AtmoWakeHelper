@@ -1,7 +1,7 @@
 AtmoWakeHelper
 ==============
 
-Solution for auto COM reconnect on sleep/resume for Atmowin
+Solution for auto COM reconnect on sleep/resume for Atmowin and other apps which are having trouble reconnecting to COM port on resume.
 
 Binary release can be found here under attachments:
 
