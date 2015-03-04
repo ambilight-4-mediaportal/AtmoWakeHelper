@@ -10,7 +10,7 @@ namespace AtmoWakeHelper
 {
   public partial class Form1 : Form
   {
-    private static Boolean debugMode = false;
+    private static Boolean debugMode = true;
 
     public Form1()
     {
@@ -145,8 +145,10 @@ namespace AtmoWakeHelper
       switch (e.Mode)
       {
         case PowerModes.Resume:
-          string appUSBDeview = @"includes\USBDeview.exe";
+
           string atmoWinFolder = Properties.Settings.Default.AtmoWinFolder;
+          string AtmoWin = "AtmoWinA.exe";
+          string appUSBDeview = @"includes\USBDeview.exe";
 
           Logger("Current application folder: " + Directory.GetCurrentDirectory());
           Logger("AtmoWin folder: " + atmoWinFolder);
@@ -154,8 +156,12 @@ namespace AtmoWakeHelper
           if (!string.IsNullOrEmpty(atmoWinFolder))
           {
             Logger("Custom atmoWin folder is specified: " + atmoWinFolder);
+
+            Logger("AtmoWin location: " + appUSBDeview);
+            AtmoWin = Path.Combine(atmoWinFolder, AtmoWin);
+
             appUSBDeview = Path.Combine(atmoWinFolder, @"includes\USBDeview.exe");
-            Logger("AppUSBDevice location: " + appUSBDeview);
+            Logger("AppUSBDeview location: " + appUSBDeview);
           }
 
           // Sleep 2.5s to allow for disk startup
@@ -187,7 +193,7 @@ namespace AtmoWakeHelper
             {
               // Start Atmowin
               Logger("Starting atmowin..");
-              startProcess("AtmoWinA.exe", "");
+              startProcess(AtmoWin, "");
             }
           }
           else
@@ -222,7 +228,12 @@ namespace AtmoWakeHelper
     {
       if (debugMode)
       {
-        StreamWriter sw = new StreamWriter("debug.log", true);
+        if (!Directory.Exists(@"C:\temp"))
+        {
+          Directory.CreateDirectory(@"C:\temp");
+        }
+
+        StreamWriter sw = new StreamWriter(@"C:\temp\debug.log", true);
         sw.WriteLine(string.Format("[ {0} ] {1}", DateTime.Now, logMessage));
         sw.Close();
         //MessageBox.Show(logMessage);
