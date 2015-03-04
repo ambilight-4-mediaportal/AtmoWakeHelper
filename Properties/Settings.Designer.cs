@@ -58,5 +58,17 @@ namespace AtmoWakeHelper.Properties {
                 this["AtmoWinFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AtmoWakeHelperFolder {
+            get {
+                return ((string)(this["AtmoWakeHelperFolder"]));
+            }
+            set {
+                this["AtmoWakeHelperFolder"] = value;
+            }
+        }
     }
 }

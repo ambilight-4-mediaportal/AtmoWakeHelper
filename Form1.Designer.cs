@@ -39,6 +39,9 @@
       this.tbAtmoWinFolder = new System.Windows.Forms.TextBox();
       this.cbstartAtmowin = new System.Windows.Forms.CheckBox();
       this.cbComPorts = new System.Windows.Forms.ComboBox();
+      this.btnBrowseAtmoWakeHelperFolder = new System.Windows.Forms.Button();
+      this.lblAtmoWakeHelperFolder = new System.Windows.Forms.Label();
+      this.tbAtmoWakeHelperFolder = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
       // 
       // btnCloseToTray
@@ -62,7 +65,7 @@
       // 
       // btnExitProgram
       // 
-      this.btnExitProgram.Location = new System.Drawing.Point(236, 137);
+      this.btnExitProgram.Location = new System.Drawing.Point(236, 219);
       this.btnExitProgram.Name = "btnExitProgram";
       this.btnExitProgram.Size = new System.Drawing.Size(91, 23);
       this.btnExitProgram.TabIndex = 2;
@@ -107,7 +110,7 @@
       this.cbstartAtmowin.Checked = global::AtmoWakeHelper.Properties.Settings.Default.enabledAtmowinStart;
       this.cbstartAtmowin.CheckState = System.Windows.Forms.CheckState.Checked;
       this.cbstartAtmowin.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::AtmoWakeHelper.Properties.Settings.Default, "enabledAtmowinStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.cbstartAtmowin.Location = new System.Drawing.Point(13, 141);
+      this.cbstartAtmowin.Location = new System.Drawing.Point(13, 223);
       this.cbstartAtmowin.Name = "cbstartAtmowin";
       this.cbstartAtmowin.Size = new System.Drawing.Size(152, 17);
       this.cbstartAtmowin.TabIndex = 3;
@@ -125,11 +128,45 @@
       this.cbComPorts.Text = global::AtmoWakeHelper.Properties.Settings.Default.comPort;
       this.cbComPorts.TextChanged += new System.EventHandler(this.cbComPorts_TextChanged);
       // 
+      // btnBrowseAtmoWakeHelperFolder
+      // 
+      this.btnBrowseAtmoWakeHelperFolder.Location = new System.Drawing.Point(251, 162);
+      this.btnBrowseAtmoWakeHelperFolder.Name = "btnBrowseAtmoWakeHelperFolder";
+      this.btnBrowseAtmoWakeHelperFolder.Size = new System.Drawing.Size(75, 23);
+      this.btnBrowseAtmoWakeHelperFolder.TabIndex = 9;
+      this.btnBrowseAtmoWakeHelperFolder.Text = "Browse";
+      this.btnBrowseAtmoWakeHelperFolder.UseVisualStyleBackColor = true;
+      this.btnBrowseAtmoWakeHelperFolder.Click += new System.EventHandler(this.btnBrowseAtmoWakeHelperFolder_Click);
+      // 
+      // lblAtmoWakeHelperFolder
+      // 
+      this.lblAtmoWakeHelperFolder.AutoSize = true;
+      this.lblAtmoWakeHelperFolder.Location = new System.Drawing.Point(9, 139);
+      this.lblAtmoWakeHelperFolder.Name = "lblAtmoWakeHelperFolder";
+      this.lblAtmoWakeHelperFolder.Size = new System.Drawing.Size(247, 13);
+      this.lblAtmoWakeHelperFolder.TabIndex = 8;
+      this.lblAtmoWakeHelperFolder.Text = "Manually specify AtmoWakeHelper folder (optional)";
+      // 
+      // tbAtmoWakeHelperFolder
+      // 
+      this.tbAtmoWakeHelperFolder.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.tbAtmoWakeHelperFolder.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.tbAtmoWakeHelperFolder.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AtmoWakeHelper.Properties.Settings.Default, "AtmoWakeHelperFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.tbAtmoWakeHelperFolder.Location = new System.Drawing.Point(12, 162);
+      this.tbAtmoWakeHelperFolder.Name = "tbAtmoWakeHelperFolder";
+      this.tbAtmoWakeHelperFolder.Size = new System.Drawing.Size(232, 20);
+      this.tbAtmoWakeHelperFolder.TabIndex = 7;
+      this.tbAtmoWakeHelperFolder.Text = global::AtmoWakeHelper.Properties.Settings.Default.AtmoWakeHelperFolder;
+      this.tbAtmoWakeHelperFolder.Validating += new System.ComponentModel.CancelEventHandler(this.tbAtmoWakeHelperFolder_Validating);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(335, 170);
+      this.ClientSize = new System.Drawing.Size(335, 254);
+      this.Controls.Add(this.btnBrowseAtmoWakeHelperFolder);
+      this.Controls.Add(this.lblAtmoWakeHelperFolder);
+      this.Controls.Add(this.tbAtmoWakeHelperFolder);
       this.Controls.Add(this.btnBrowseAtmoWinFolder);
       this.Controls.Add(this.lblAtmoWinFolder);
       this.Controls.Add(this.tbAtmoWinFolder);
@@ -140,7 +177,7 @@
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Form1";
-      this.Text = "Atmo Wake Helper Service";
+      this.Text = "AtmoWakeHelper";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
       this.Shown += new System.EventHandler(this.Form1_Shown);
       this.Resize += new System.EventHandler(this.Form1_Resize);
@@ -160,6 +197,9 @@
         private System.Windows.Forms.Label lblAtmoWinFolder;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button btnBrowseAtmoWinFolder;
+        private System.Windows.Forms.Button btnBrowseAtmoWakeHelperFolder;
+        private System.Windows.Forms.Label lblAtmoWakeHelperFolder;
+        private System.Windows.Forms.TextBox tbAtmoWakeHelperFolder;
 
     }
 }
