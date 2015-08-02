@@ -1,6 +1,11 @@
 AtmoWakeHelper
 ==============
 
+ - THIS PROGRAM IS NOW OBSOLETE
+ - included in AtmoLight under AtmoWin options for the next upcoming release (AtmoLight > 1.16.1.31)
+
+
+
 Solution for auto COM reconnect on sleep/resume for Atmowin and other apps which are having trouble reconnecting to COM port on resume.
 
 Binary release can be found here under attachments:
